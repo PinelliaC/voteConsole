@@ -18,7 +18,8 @@
 	<modules>
 		<module>vote_console_service</module>
 		<module>vote_console_api</module>
-	</modules>
+		<module>vote_console_web</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
