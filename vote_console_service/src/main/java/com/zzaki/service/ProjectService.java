@@ -1,5 +1,7 @@
 package com.zzaki.service;
 
+import com.zzaki.model.response.ProjectRes;
+
 /**
  * @Author: Zzaki
  * @Description:
@@ -7,4 +9,10 @@ package com.zzaki.service;
  * @Company: DeepWise
  */
 public interface ProjectService {
+
+    int addProject(ProjectRes projectRes);
+
+    int deleteProjetc(Integer projectId);
+
+    int updateProject(ProjectRes projectRes);
 }

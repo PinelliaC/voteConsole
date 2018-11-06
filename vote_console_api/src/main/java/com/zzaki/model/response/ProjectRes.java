@@ -1,5 +1,7 @@
 package com.zzaki.model.response;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @Date: Created on 2018/11/6
  * @Company: DeepWise
  */
+@Data
 public class ProjectRes implements Serializable {
 
     private static final long serialVersionUID = -5258381040863757769L;

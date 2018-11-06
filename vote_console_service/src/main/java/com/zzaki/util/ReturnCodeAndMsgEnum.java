@@ -20,7 +20,7 @@ public enum ReturnCodeAndMsgEnum {
     /** 非法的参数，参数不对，或者格式错误等  */
     CALLER_PARAM_ILLEGAL(-10001, "illegal parameters"),
     /** 未知异常 */
-    UNKNOWN_EXCEPTION(10000, "unknown exception"),
+    DATABASE_EXCEPTION(10000, "database exception"),
     /** 系统错误 */
     SYSTEM_ERROR(10001, "system error");
 
