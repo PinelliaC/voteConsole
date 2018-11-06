@@ -6,5 +6,5 @@ package com.zzaki.service;
  * @Date: Created on 2018/10/26
  * @Company: DeepWise
  */
-public interface VoteService {
+public interface ProjectService {
 }
