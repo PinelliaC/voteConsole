@@ -22,6 +22,28 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    /**
+     * @api {post} /vote/project/addProject 增加投票项目
+     * @apiName addProject
+     * @apiGroup vote_project
+     * @apiParam {int} projectName  项目名
+     * @apiParam {int} voteCount  投票数
+     * @apiParam {int} heatValue  热度
+     * @apiParamExample {json} Request-Example:
+     *  {
+     *	    "projectName":"bbb",
+     *	    "voteCount":123,
+     *      "heatValue":1234
+     *  }
+     * @apiDescription 不需要更新的为缺省，不填即可
+     * @apiSuccessExample {json} Success-Response:
+     * HTTP/1.1 200 OK
+     *  {
+     *      "ret": 0,
+     *      "msg": "ok",
+     *      "data": null
+     *  }
+     */
     @RequestMapping(value = "/addProject",method = RequestMethod.POST)
     public ReturnValue<String> addProject(@RequestBody ProjectReq projectReq){
         try{
@@ -50,6 +72,30 @@ public class ProjectController {
         }
     }
 
+    /**
+     * @api {post} /vote/project/updateProject 更新投票项目
+     * @apiName updateProject
+     * @apiGroup vote_project
+     * @apiParam {int} projectId  项目id，必填！
+     * @apiParam {int} [projectName]  项目名
+     * @apiParam {int} [voteCount]  投票数
+     * @apiParam {int} [heatValue]  热度
+     * @apiParamExample {json} Request-Example:
+     *  {
+     *      "projectId": 1,
+     *	    "projectName":"bbb",
+     *	    "voteCount":123,
+     *      "heatValue":1234
+     *  }
+     * @apiDescription 不需要更新的为缺省，不填即可
+     * @apiSuccessExample {json} Success-Response:
+     * HTTP/1.1 200 OK
+     *  {
+     *      "ret": 0,
+     *      "msg": "ok",
+     *      "data": null
+     *  }
+     */
     @RequestMapping(value = "/updateProject",method = RequestMethod.POST)
     public ReturnValue<String> updateProject(@RequestBody ProjectReq projectReq){
         try{

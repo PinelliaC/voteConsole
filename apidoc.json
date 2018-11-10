@@ -1,0 +1,7 @@
+{
+  "name": "投票系统后天管理",
+  "version": "0.0.1",
+  "description": "所有请求为POST，正确ret为0，不正确为非0",
+  "title": "Wechat vote console apidoc",
+  "url": ""
+}

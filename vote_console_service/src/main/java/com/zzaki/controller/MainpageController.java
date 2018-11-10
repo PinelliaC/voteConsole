@@ -22,6 +22,28 @@ public class MainpageController {
     @Autowired
     private MainpageService mainpageService;
 
+    /**
+     * @api {post} /vote/page/updatePage 更新首页信息
+     * @apiName updatePage
+     * @apiGroup vote_mainpage
+     * @apiParam {int} [project_amount]  首页显示项目数
+     * @apiParam {int} [vote_amount]  首页显示投票数
+     * @apiParam {int} [view_amount]  首页显示浏览数
+     * @apiParamExample {json} Request-Example:
+     *  {
+     *      "project_amount": 222333,
+     *      "vote_amount": 1222,
+     *      "view_amount": 1111
+     *  }
+     * @apiDescription 不需要更新的为缺省，不填即可
+     * @apiSuccessExample {json} Success-Response:
+     * HTTP/1.1 200 OK
+     *  {
+     *      "ret": 0,
+     *      "msg": "ok",
+     *      "data": null
+     *  }
+     */
     @RequestMapping(value = "/updatePage", method = RequestMethod.POST)
     public ReturnValue<String> updatePage(@RequestBody PageReq pageReq) {
         try {
