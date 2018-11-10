@@ -17,3 +17,6 @@ CREATE TABLE `main_page` (
   `view_amount` int(12) NOT NULL,
   `png_url` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `main_page` VALUES
+  (123,456,789,'www.baidu.com');
