@@ -7,6 +7,7 @@ import com.zzaki.service.ProjectService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 /**
  * @Author: Zzaki
@@ -33,7 +34,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public int deleteProjetc(Integer projectId) {
+    public int deleteProject(Integer projectId) {
         if (projectPOMapper.selectByPrimaryKey(projectId) != null){
             return projectPOMapper.deleteByPrimaryKey(projectId);
         }
@@ -47,9 +48,9 @@ public class ProjectServiceImpl implements ProjectService {
             log.error("illegal Argument! projectId is null");
             return 0;
         }
-       // Example example = new Example(ProjectPO.class);
-        //example.createCriteria().andEqualTo("projectId",projectRes.getProjectId());
-        return projectPOMapper.updateByPrimaryKeySelective(conver2PO(projectReq));
+        Example example = new Example(ProjectPO.class);
+        example.createCriteria().andEqualTo("projectId", projectReq.getProjectId());
+        return projectPOMapper.updateByExampleSelective(conver2PO(projectReq), example);
     }
 
     private ProjectPO conver2PO(ProjectReq projectReq){

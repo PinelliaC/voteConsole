@@ -39,7 +39,7 @@ public class ProjectController {
     @RequestMapping(value = "/deleteProject",method = RequestMethod.POST)
     public ReturnValue<String> deleteProject(@RequestParam("projectId")Integer projectId){
         try{
-            int result = projectService.deleteProjetc(projectId);
+            int result = projectService.deleteProject(projectId);
             if (result >0){
                 return new ReturnValue<>(ReturnCodeAndMsgEnum.SUCCESS,null);
             }else {
