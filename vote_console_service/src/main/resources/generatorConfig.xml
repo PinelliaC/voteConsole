@@ -26,5 +26,8 @@
         <table tableName="project" domainObjectName="ProjectPO" >
             <generatedKey column="project_id" sqlStatement="Mysql" identity="true"/>
         </table>
+        <table tableName="main_page" domainObjectName="MainPagePO">
+            <generatedKey column="project_amount" sqlStatement="Mysql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>
