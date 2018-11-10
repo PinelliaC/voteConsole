@@ -55,6 +55,7 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectPO conver2PO(ProjectReq projectReq){
         ProjectPO projectPO = new ProjectPO();
         projectPO.setProjectName(projectReq.getProjectName());
+        projectPO.setProjectId(projectReq.getProjectId());
         /*projectPO.setPngUrl(projectReq.getPngUrl());
         projectPO.setQrUrl(projectReq.getQrUrl());*/
         projectPO.setVoteCount(projectReq.getVoteCount());
