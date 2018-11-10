@@ -6,11 +6,7 @@ import com.zzaki.util.ReturnCodeAndMsgEnum;
 import com.zzaki.util.ReturnValue;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: Zzaki
@@ -18,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Date: Created on 2018/11/6
  * @Company: DeepWise
  */
-@Controller
+@RestController
 @Slf4j
 @RequestMapping("/vote/project")
 public class ProjectController {
