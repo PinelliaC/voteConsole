@@ -1,7 +1,7 @@
 
 DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
-  `project_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_name` varchar(255) NOT NULL,
   `png_url` varchar(255) DEFAULT NULL,
   `QR_url` varchar(255) DEFAULT NULL,
