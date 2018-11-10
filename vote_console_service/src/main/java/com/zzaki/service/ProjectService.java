@@ -1,6 +1,6 @@
 package com.zzaki.service;
 
-import com.zzaki.model.response.ProjectRes;
+import com.zzaki.model.request.ProjectReq;
 
 /**
  * @Author: Zzaki
@@ -10,9 +10,9 @@ import com.zzaki.model.response.ProjectRes;
  */
 public interface ProjectService {
 
-    int addProject(ProjectRes projectRes);
+    int addProject(ProjectReq projectReq);
 
     int deleteProjetc(Integer projectId);
 
-    int updateProject(ProjectRes projectRes);
+    int updateProject(ProjectReq projectReq);
 }

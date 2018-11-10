@@ -1,6 +1,6 @@
 package com.zzaki.controller;
 
-import com.zzaki.model.response.ProjectRes;
+import com.zzaki.model.request.ProjectReq;
 import com.zzaki.service.ProjectService;
 import com.zzaki.util.ReturnCodeAndMsgEnum;
 import com.zzaki.util.ReturnValue;
@@ -19,17 +19,17 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Company: DeepWise
  */
 @Controller
-@RequestMapping("/vote/project")
 @Slf4j
+@RequestMapping("/vote/project")
 public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
 
     @RequestMapping(value = "/addProject",method = RequestMethod.POST)
-    public ReturnValue<String> addProject(@RequestBody ProjectRes projectRes){
+    public ReturnValue<String> addProject(@RequestBody ProjectReq projectReq){
         try{
-            int result = projectService.addProject(projectRes);
+            int result = projectService.addProject(projectReq);
             if (result >0){
                 return new ReturnValue<>(ReturnCodeAndMsgEnum.SUCCESS,null);
             }else {
@@ -55,9 +55,9 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/updateProject",method = RequestMethod.POST)
-    public ReturnValue<String> updateProject(@RequestBody ProjectRes projectRes){
+    public ReturnValue<String> updateProject(@RequestBody ProjectReq projectReq){
         try{
-            int result = projectService.updateProject(projectRes);
+            int result = projectService.updateProject(projectReq);
             if (result >0){
                 return new ReturnValue<>(ReturnCodeAndMsgEnum.SUCCESS,null);
             }else {

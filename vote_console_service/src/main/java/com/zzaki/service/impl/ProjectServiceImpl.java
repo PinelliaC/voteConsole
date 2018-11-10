@@ -2,7 +2,7 @@ package com.zzaki.service.impl;
 
 import com.zzaki.dao.mapper.ProjectPOMapper;
 import com.zzaki.model.entity.ProjectPO;
-import com.zzaki.model.response.ProjectRes;
+import com.zzaki.model.request.ProjectReq;
 import com.zzaki.service.ProjectService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class ProjectServiceImpl implements ProjectService {
     ProjectPOMapper projectPOMapper;
 
     @Override
-    public int addProject(ProjectRes projectRes) {
-        if (projectRes == null || projectRes.getProjectName() == null || projectRes.getProjectName() == ""){
+    public int addProject(ProjectReq projectReq) {
+        if (projectReq == null || projectReq.getProjectName() == null || projectReq.getProjectName() == ""){
             log.error("illegal Argument! project name can not be null!");
             return 0;
         }
-        ProjectPO projectPO = conver2PO(projectRes);
+        ProjectPO projectPO = conver2PO(projectReq);
         return projectPOMapper.insert(projectPO);
     }
 
@@ -42,23 +42,23 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public int updateProject(ProjectRes projectRes) {
-        if (projectRes == null || projectRes.getProjectId() == null){
+    public int updateProject(ProjectReq projectReq) {
+        if (projectReq == null || projectReq.getProjectId() == null){
             log.error("illegal Argument! projectId is null");
             return 0;
         }
        // Example example = new Example(ProjectPO.class);
         //example.createCriteria().andEqualTo("projectId",projectRes.getProjectId());
-        return projectPOMapper.updateByPrimaryKeySelective(conver2PO(projectRes));
+        return projectPOMapper.updateByPrimaryKeySelective(conver2PO(projectReq));
     }
 
-    private ProjectPO conver2PO(ProjectRes projectRes){
+    private ProjectPO conver2PO(ProjectReq projectReq){
         ProjectPO projectPO = new ProjectPO();
-        projectPO.setProjectName(projectRes.getProjectName());
-        projectPO.setPngUrl(projectRes.getPngUrl());
-        projectPO.setQrUrl(projectRes.getQrUrl());
-        projectPO.setVoteCount(projectRes.getVoteCount());
-        projectPO.setHeatValue(projectRes.getHeatValue());
+        projectPO.setProjectName(projectReq.getProjectName());
+        /*projectPO.setPngUrl(projectReq.getPngUrl());
+        projectPO.setQrUrl(projectReq.getQrUrl());*/
+        projectPO.setVoteCount(projectReq.getVoteCount());
+        projectPO.setHeatValue(projectReq.getHeatValue());
         return  projectPO;
     }
 }
