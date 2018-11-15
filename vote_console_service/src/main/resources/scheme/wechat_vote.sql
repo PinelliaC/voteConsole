@@ -1,7 +1,7 @@
 
 DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
-  `project_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_name` varchar(255) NOT NULL,
   `png_url` varchar(255) DEFAULT NULL,
   `QR_url` varchar(255) DEFAULT NULL,
@@ -17,3 +17,6 @@ CREATE TABLE `main_page` (
   `view_amount` int(12) NOT NULL,
   `png_url` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `main_page` VALUES
+  (123,456,789,'www.baidu.com');

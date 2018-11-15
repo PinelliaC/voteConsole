@@ -12,7 +12,7 @@ public interface ProjectService {
 
     int addProject(ProjectReq projectReq);
 
-    int deleteProjetc(Integer projectId);
+    int deleteProject(Integer projectId);
 
     int updateProject(ProjectReq projectReq);
 }
