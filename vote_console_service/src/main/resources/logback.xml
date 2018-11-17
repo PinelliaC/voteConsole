@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="logback.xsd">
+
+  <property name="logPath" value="/root/vote_console/log" />
+  <property name="patt" value="%d{yyyMMdd HH:mm:ss.SSS} [%-1thread] [%-5level] %logger - %msg%n"/>
+  <appender name="fileLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${logPath}/vote_console.log</file>
+    <encoder>
+      <pattern>${patt}</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+        <!-- rollover daily -->
+        <fileNamePattern>${logPath}/vote_console_%d{yyyyMMdd}_%i.zip</fileNamePattern>
+         <!-- each file should be at most 50MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- keep 30 days worth of history -->
+         <maxHistory>30</maxHistory> 
+        <!--  keep files at most 200MB --> 
+   		<totalSizeCap>200MB</totalSizeCap>
+    </rollingPolicy>
+
+  </appender>
+
+  <appender name="std" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>${patt}</pattern>
+    </encoder>
+  </appender>
+
+
+  <root level="INFO">
+    <appender-ref ref="fileLog" />
+      <appender-ref ref="std" />
+  </root>
+
+</configuration>
