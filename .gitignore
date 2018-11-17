@@ -31,3 +31,17 @@ hs_err_pid*
 *.iml
 out
 gen
+=======
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/vote_console_service/src/main/resources/generatorConfig.xml
+/vote_console_service/src/main/resources/application.properties
+/vote_console_service/target/
+/vote_console_api/target/
