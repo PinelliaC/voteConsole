@@ -62,8 +62,30 @@ public class ProjectController {
         }
     }
 
+    /**
+     * @api {post} /vote/project/deleteProject 删除投票项目
+     * @apiName deleteProject
+     * @apiGroup vote_project
+     * @apiParam {int} projectId  项目id，必填！
+     * @apiParamExample {json} Request-Example:
+     *  {
+     *      "projectId": 1
+     *  }
+     * @apiDescription 理论上只需要填projectId，其他勿填
+     * @apiSuccessExample {json} Success-Response:
+     * HTTP/1.1 200 OK
+     *  {
+     *      "ret": 0,
+     *      "msg": "ok",
+     *      "data": null
+     *  }
+     */
     @RequestMapping(value = "/deleteProject",method = RequestMethod.POST)
-    public ReturnValue<String> deleteProject(@RequestParam("projectId")Integer projectId){
+    public ReturnValue<String> deleteProject(@RequestBody ProjectReq projectReq){
+        int projectId = projectReq.getProjectId();
+        if (projectId == 0 ) {
+            return new ReturnValue<>(ReturnCodeAndMsgEnum.CALLER_PARAM_LACK,null);
+        }
         try{
             int result = projectService.deleteProject(projectId);
             if (result >0){
@@ -132,7 +154,7 @@ public class ProjectController {
     public ReturnValue<String> listProject() {
         try{
             List<ProjectPO> result = projectService.listProject();
-            if(result.size() != 0){
+            if(!result.isEmpty()){
                 return new ReturnValue<>(ReturnCodeAndMsgEnum.SUCCESS, JSON.toJSONString(result));
             } else {
                 return new ReturnValue<>(ReturnCodeAndMsgEnum.NO_RECORD_CHANGE,null);

@@ -37,8 +37,10 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public int deleteProject(Integer projectId) {
-        if (projectPOMapper.selectByPrimaryKey(projectId) != null){
-            return projectPOMapper.deleteByPrimaryKey(projectId);
+        Example example = new Example(ProjectPO.class);
+        example.createCriteria().andEqualTo("projectId", projectId);
+        if (!projectPOMapper.selectByExample(example).isEmpty()){
+            return  projectPOMapper.deleteByExample(example);
         }
         log.warn("project is not exist ,projectId :{}",projectId);
         return 0;
