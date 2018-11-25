@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.List;
+
 /**
  * @Author: Zzaki
  * @Description:
@@ -51,6 +53,11 @@ public class ProjectServiceImpl implements ProjectService {
         Example example = new Example(ProjectPO.class);
         example.createCriteria().andEqualTo("projectId", projectReq.getProjectId());
         return projectPOMapper.updateByExampleSelective(conver2PO(projectReq), example);
+    }
+
+    @Override
+    public List<ProjectPO> listProject(){
+        return projectPOMapper.selectAll();
     }
 
     private ProjectPO conver2PO(ProjectReq projectReq){

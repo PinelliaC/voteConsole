@@ -1,6 +1,9 @@
 package com.zzaki.service;
 
+import com.zzaki.model.entity.ProjectPO;
 import com.zzaki.model.request.ProjectReq;
+
+import java.util.List;
 
 /**
  * @Author: Zzaki
@@ -15,4 +18,6 @@ public interface ProjectService {
     int deleteProject(Integer projectId);
 
     int updateProject(ProjectReq projectReq);
+
+    List<ProjectPO> listProject();
 }
