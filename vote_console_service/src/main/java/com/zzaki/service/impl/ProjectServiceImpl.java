@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.List;
+
 /**
  * @Author: Zzaki
  * @Description:
@@ -35,8 +37,10 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public int deleteProject(Integer projectId) {
-        if (projectPOMapper.selectByPrimaryKey(projectId) != null){
-            return projectPOMapper.deleteByPrimaryKey(projectId);
+        Example example = new Example(ProjectPO.class);
+        example.createCriteria().andEqualTo("projectId", projectId);
+        if (!projectPOMapper.selectByExample(example).isEmpty()){
+            return  projectPOMapper.deleteByExample(example);
         }
         log.warn("project is not exist ,projectId :{}",projectId);
         return 0;
@@ -51,6 +55,11 @@ public class ProjectServiceImpl implements ProjectService {
         Example example = new Example(ProjectPO.class);
         example.createCriteria().andEqualTo("projectId", projectReq.getProjectId());
         return projectPOMapper.updateByExampleSelective(conver2PO(projectReq), example);
+    }
+
+    @Override
+    public List<ProjectPO> listProject(){
+        return projectPOMapper.selectAll();
     }
 
     private ProjectPO conver2PO(ProjectReq projectReq){
