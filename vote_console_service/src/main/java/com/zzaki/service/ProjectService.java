@@ -20,4 +20,6 @@ public interface ProjectService {
     int updateProject(ProjectReq projectReq);
 
     List<ProjectPO> listProject();
+
+    ProjectPO getProjectById(Integer projectId);
 }

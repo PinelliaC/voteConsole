@@ -62,6 +62,11 @@ public class ProjectServiceImpl implements ProjectService {
         return projectPOMapper.selectAll();
     }
 
+    @Override
+    public ProjectPO getProjectById(Integer projectId) {
+        return projectPOMapper.selectByPrimaryKey(projectId);
+    }
+
     private ProjectPO conver2PO(ProjectReq projectReq){
         ProjectPO projectPO = new ProjectPO();
         projectPO.setProjectName(projectReq.getProjectName());

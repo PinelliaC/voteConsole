@@ -8,8 +8,12 @@ import com.zzaki.util.ReturnCodeAndMsgEnum;
 import com.zzaki.util.ReturnValue;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -22,6 +26,9 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/vote/project")
 public class ProjectController {
+
+    private final static String QR_IMAGE = "qr";
+    private final static String PNG_IMAGE= "png";
 
     @Autowired
     private ProjectService projectService;
@@ -162,6 +169,48 @@ public class ProjectController {
         } catch (Exception e) {
             return new ReturnValue<>(ReturnCodeAndMsgEnum.DATABASE_EXCEPTION,e.getMessage());
         }
+    }
+
+    @RequestMapping(value = "/updateImage",method = RequestMethod.POST)
+    public ReturnValue updateImage(@RequestParam("projectId")Integer projectId, @RequestParam("imageType")String imageType,
+                                              @RequestParam("imageFile")MultipartFile imageFile, HttpServletRequest request) {
+        ProjectPO projectPO = projectService.getProjectById(projectId);
+        if (projectPO == null)
+            return new ReturnValue<>(ReturnCodeAndMsgEnum.CALLER_PARAM_ILLEGAL, null);
+        String filePath = null;
+        if (QR_IMAGE.equals(imageType)) {
+            filePath = projectPO.getQrUrl();
+        } else {
+            filePath = projectPO.getPngUrl();
+        }
+        if (filePath == null) {
+            return new ReturnValue<>(ReturnCodeAndMsgEnum.CALLER_PARAM_ILLEGAL, null);
+        }
+        try {
+            if (!imageFile.isEmpty()) {
+                String fileName = getFileNameByPath(filePath);
+                filePath = "/opt/apache-tomcat-8/webapps"+filePath;
+                File file = new File(filePath, fileName);
+                if (!file.getParentFile().exists()) {
+                    file.getParentFile().mkdirs();
+                }
+                imageFile.transferTo(new File(filePath));
+                return new ReturnValue<>(ReturnCodeAndMsgEnum.SUCCESS);
+            }else {
+                return new ReturnValue<>(ReturnCodeAndMsgEnum.CALLER_PARAM_ILLEGAL, null);
+            }
+        }catch (Exception e){
+            return new ReturnValue<>(ReturnCodeAndMsgEnum.SYSTEM_ERROR,e);
+        }
+    }
+
+    private String getFileNameByPath(String filePath){
+        String fileName = null;
+        if (!StringUtils.isEmpty(filePath)){
+            String[] paths = filePath.split("/");
+            fileName = paths[paths.length-1];
+        }
+        return fileName;
     }
 
 
